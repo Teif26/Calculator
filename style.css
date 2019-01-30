@@ -1,0 +1,62 @@
+html body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+header {
+  width: 100vh;
+  height: 1.8em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header .header-text {
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 1.8em;
+}
+
+#wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25vw;
+  height: 30vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: "display " "calc-b  " "calc-b  " "calc-b  " "calc-b ";
+  grid-gap: 1.8em;
+}
+
+#display {
+  background: #333;
+  height: 4.8em;
+  width: 100%;
+  grid-area: "display";
+}
+
+#calc-body {
+  grid-area: "calc-b";
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: (1fr)[4];
+      grid-template-rows: repeat(4, 1fr);
+  /* grid-template-areas: "b1 b2 b3 b4"
+                          "b5 b6 b7 b8" 
+                          "b9 b10 b11 b12"
+                          "b13 b14 b15 b16"*/
+  grid-gap: 1.8em;
+}
+
+.calc-button {
+  height: 60px;
+  width: 60px;
+  border: 1px #333 solid;
+}
+/*# sourceMappingURL=style.css.map */
