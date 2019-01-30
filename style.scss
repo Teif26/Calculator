@@ -1,6 +1,6 @@
 html body{
     height:  100vh;
-    width: 100vw;
+    width: 100%;
    
      margin: 0;
         
@@ -11,6 +11,8 @@ header{
     height: 1.8em;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1.8em;
+    
     .header-text{
         text-align: center;
         font-family: sans-serif;
@@ -25,35 +27,49 @@ header{
     display: grid;
     grid-template-columns:1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 
-    "display "
-    "calc-b  "
-    "calc-b  "
-    "calc-b  "
-    "calc-b ";
     grid-gap: 1.8em;
 }
 #display{
     background: #333;
-     height: 4.8em;
+    color: #00FFFF;
+    
+    font-size: 5.8em;
+     max-height: 4.8em;
      width: 100%;
+     display: flex;
+     justify-content: flex-end ;
+     align-items: baseline;  
+     box-sizing: border-box;
+        #num-display{
+            margin-bottom: 5px;
+            margin-top: 40px;
+            margin-right: 15px;
+        }
      
-    grid-area:"display";
-
 }
+
 #calc-body{
-    grid-area: "calc-b";
     display:grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(4, 1fr);
-   /* grid-template-areas: "b1 b2 b3 b4"
-                          "b5 b6 b7 b8" 
-                          "b9 b10 b11 b12"
-                          "b13 b14 b15 b16"*/
-                          grid-gap: 1.8em;
+  
+    grid-gap: 1.8em;
 }
+
 .calc-button{
+    background: #333;
+    color: #fff;
     height: 60px;
     width: 60px;
     border: 1px #333 solid;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+     
+    
+    &:hover{
+       translate: rotateZ(360deg) ;
+    }
 }
