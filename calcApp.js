@@ -1,14 +1,20 @@
-var btnNum = document.querySelectorAll(".calc-button")
-btnNum = Array.from(btnNum);
+var numBtn = document.getElementsByClassName("calc-button");
 
-// btnNum.forEach((el)=>{
-//     el.addEventListener("mouseover", addNewNumbers)
-// })
-// function addNewNumbers(){
-//     btnNum.forEach((el)=>{
-//      el.target.style.
-//     })
-// }
-btnNum[1].addEventListener("mouseover", (el)=>{
-  el.target.style.background = blue;
-})
+for (var i=0; i<numBtn.length; i++){           
+  numBtn[i].addEventListener("mouseover", function(){
+    mOverDiv(this)
+   });           
+  numBtn[i].addEventListener("mouseout", function(){
+    mOutDiv(this)
+   });
+}
+
+function mOverDiv(e) {                
+    e.style["z-index"]="3";                
+}
+
+function mOutDiv(e) {                
+    e.style.background="1";                
+}
+
+
