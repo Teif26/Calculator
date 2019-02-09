@@ -14,11 +14,15 @@ var num2 ;
 // update display when user clicks number
  var updateDisplay = (clkObj)=> {
    var  btnText = clkObj.target.innerText;
-   if(displayVal === "0")
-    displayVal = "";
+   var shouldResetCalc = (operator === "" && finalVal !== 0);
+  
+  displayVal = (displayVal === "0" || shouldResetCalc)
+    ? btnText 
+    : displayVal + btnText;
 
-    displayVal += btnText;
-    displayValEl.innerText = displayVal;
+  if (shouldResetCalc)
+    finalVal = 0;
+  displayValEl.innerText = displayVal;
  }
   //add event listeners to each num button,setting the click functon to update screen
  for(let i=0;i<calcNumBtns.length;i++){
@@ -27,35 +31,31 @@ var num2 ;
   // capturing the first number and operator when the operator btns are clicked
   var operator1 = (clkObj)=>{
       var sign = clkObj.target.innerText;
+      num1 = parseFloat(displayVal);
       switch(sign){
        case "+": 
-       operator = "+"
-       num1 = parseFloat(displayVal)
-         displayVal = "0";
-         displayValEl.innerText = displayVal
+       operator = "+"     
       break;
       case "-": 
       operator = "-"
-      num1 = parseFloat(displayVal)
-        displayVal = "0";
-        displayValEl.innerText = displayVal
       break;
       case "÷": 
       operator = "÷"
-      num1 = parseFloat(displayVal)
-        displayVal = "0";
-        displayValEl.innerText = displayVal
       break;
       case "x": 
       operator = "x"
-      num1 = parseFloat(displayVal)
-        displayVal = "0";
-        displayValEl.innerText = displayVal
       break;
       default:
       break;
     };
+    clearDisplay()
+    if(finalVal === 0 && num1 !== 0)
+    finalVal = num1;
 }
+function clearDisplay() {
+    displayVal = "0";
+    displayValEl.innerText = displayVal;
+};
 //adding event listener to the operator btns, setting click to update num1 and operator variables
 for(let i=0;i<operatorBtns.length;i++){
       operatorBtns[i].addEventListener("click", operator1,false);
@@ -71,52 +71,51 @@ for(let i=0;i<operatorBtns.length;i++){
      num2 = parseFloat(displayVal);
       switch (operator){
           case '+':
-          finalVal = num1 + num2;
-          displayValEl.innerText = finalVal;
+          finalVal += num2;
           break;
           case '-':
-          finalVal = num1 - num2;
-          displayValEl.innerText = finalVal;
+          finalVal -= num2;
           break;
           case 'x':
-          finalVal = num1 * num2;
-          displayValEl.innerText = finalVal;
+          finalVal *= num2;
           break;
           //nesting switches to check for division by zero.
           case '÷':
-              switch (true){
-                  case num1 === 0 || num2 === 0:
-                  alert("Cant devide by Zero")
-                   break;}             
-          finalVal = num1 / num2 ;
-          displayValEl.innerText = finalVal; 
-          
+            switch (true){
+             case num2 === 0:
+            alert("Cant Devide by Zero")
+            break;}             
+          finalVal /= num2 ;        
           break;
-          default :
-          break;
-
-      
+             default :
+          break;   
         }
-        num1 = displayVal;
-        num2 = 0;
-       // operator = "";
+        displayValEl.innerText = finalVal; 
+        num1 = num2;
+        operator = "";
     }
-
  clearBtn.onclick = ()=>{
-  displayVal = "0";
-  operator = "";
-  num1 = 0
-  num2 = 0
-  displayValEl.innerText = displayVal;
-
+    operator = "";
+    clearValues();
+    clearDisplay();
  }
-backspaceBtn.onclick = ()=>{
+ function clearValues() {
+    num1 = 0;
+    num2 = 0;
+    finalVal = 0;
+  }
+ backspaceBtn.onclick = ()=>{
     let lengthOfDisplay = displayVal.length;
     displayVal = displayVal.slice(0,lengthOfDisplay - 1)
 
-    if(displayVal === "")
-    displayVal = "0";
-
+    var shouldResetCalc = (operator === "" && finalVal !== 0);
+  
+    if (displayVal === "")
+      displayVal = "0";
+  
+    if (shouldResetCalc)
+      finalVal = 0;
+      
     displayValEl.innerText = displayVal;
 }
 
