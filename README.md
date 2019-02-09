@@ -1,1 +1,1 @@
-Will be Creating a very cool Calculator for my portfolio
+Created a very cool Calculator for my portfolio
